@@ -6,9 +6,21 @@ import streamlit.components.v1 as components
 # --- 페이지 기본 설정 ---
 st.set_page_config(page_title="물의 상태 변화 실험실", page_icon="💧", layout="centered")
 
-# 나눔고딕 폰트 설정 (그래프 한글 깨짐 방지)
-plt.rc('font', family='NanumGothic')
-plt.rcParams['axes.unicode_minus'] = False
+# --- 폰트 깨짐 방지 설정 (기존 코드를 이 구역으로 교체) ---
+import matplotlib.font_manager as fm
+
+# 리눅스 시스템에 설치된 나눔고딕 폰트 파일 경로를 직접 지정합니다.
+font_path = "/usr/share/fonts/truetype/nanum/NanumGothic.ttf"
+
+try:
+    font_prop = fm.FontProperties(fname=font_path)
+    plt.rc('font', family=font_prop.get_name())
+except:
+    # 혹시 모를 예외 상황을 위한 기본 폰트 패스
+    plt.rc('font', family='sans-serif')
+
+plt.rcParams['axes.unicode_minus'] = False  # 마이너스 기호 깨짐 방지
+# ----------------------------------------------------
 
 st.title("💧 물의 상태 변화 분자 실험실")
 st.markdown("""
