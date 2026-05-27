@@ -66,7 +66,7 @@ current_temp, current_phase, milestones = calc_temp_and_phase(energy, mass)
 col1, col2, col3 = st.columns(3)
 col1.metric("⚖️ 물의 질량", f"{mass} g")
 col2.metric("🔥 공급된 에너지", f"{energy} kJ")
-col3.metric("🌡️ 현재 온도", f"{current_temp:.1stf}°C" if current_temp == 0 or current_temp == 100 else f"{current_temp:.1f}°C")
+col3.metric("🌡️ 현재 온도", f"{current_temp:.0f}°C" if current_temp == 0 or current_temp == 100 else f"{current_temp:.1f}°C")
 
 # 현재 상태 시각적 알림
 st.info(f"**현재 물질의 상태:** {current_phase}")
